@@ -14,7 +14,7 @@ from discord.utils import get
 from discord.ext.commands import MissingPermissions
 from colorama import Fore, Style
 
-TOKEN = #Bot token goes here
+TOKEN = 'Nzk4NDY0OTE4MTM5NTY4MTM5.X_1aZw.46T7Ot-WkngNjO1d6y4tAc2VZpU'
 cmd_prefix = '!'
 client = commands.Bot(command_prefix=cmd_prefix)
 general_chat_id = 787473942348693547
@@ -86,7 +86,7 @@ async def play(context, url: str):
             print('Removing old file...\n')
     except PermissionError as pe:
         print("Can't delete file\n")
-        await context.send('ERROR')
+        await context.send('ERROR: ' + pe)
         return
 
     await context.send('Trying to download audio file to client...')
@@ -115,7 +115,10 @@ async def play(context, url: str):
     voice_channel.play(discord.FFmpegPCMAudio('song.mp3'), after=lambda x: print(f'{Fore.GREEN}File: {file_name} has finished playing\n'))
     
     nname = file_name.rsplit('-', 2)
-    await context.send(f'Playing audio {nname}...')
+    embed = discord.Embed(title='Playing Audio', inline=True, color=0x9A00FF)
+    embed.add_field(name='SOURCE', value=nname, inline=True)
+    embed.set_thumbnail(url='https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Icons8_flat_audio_file.svg/512px-Icons8_flat_audio_file.svg.png')
+    await context.send(embed=embed)
     print(f'{Fore.GREEN}Playing audio...\n')
 
 @client.command(name='leave')
