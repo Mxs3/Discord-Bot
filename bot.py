@@ -12,7 +12,7 @@ from discord.utils import get
 from discord.ext.commands import MissingPermissions
 from colorama import Fore, Style
 
-TOKEN = 'Nzk4NDY0OTE4MTM5NTY4MTM5.X_1aZw.AQbmq_WIXO6nWSFpHr8lz-KcDIg'
+TOKEN = #BOT TOKEN GOES HERE
 cmd_prefix = '!'
 client = commands.Bot(command_prefix=cmd_prefix)
 general_chat_id = 787473942348693547
