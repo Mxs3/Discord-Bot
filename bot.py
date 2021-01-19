@@ -3,10 +3,8 @@ import sys
 import time
 import errno
 import datetime
-import random
 import ffmpeg
 import discord
-import configparser as cp
 import colorama as color
 import youtube_dl as yt
 from discord.ext import commands
@@ -14,7 +12,7 @@ from discord.utils import get
 from discord.ext.commands import MissingPermissions
 from colorama import Fore, Style
 
-TOKEN = #token goes here
+TOKEN = 'Nzk4NDY0OTE4MTM5NTY4MTM5.X_1aZw.AQbmq_WIXO6nWSFpHr8lz-KcDIg'
 cmd_prefix = '!'
 client = commands.Bot(command_prefix=cmd_prefix)
 general_chat_id = 787473942348693547
@@ -22,7 +20,7 @@ spam_chat_id = 798618318659518475
 client_version = '1.1.3'
 color.init(autoreset=True)
 current_time = datetime.datetime.now()
-TEMP_audio_file = 'test.mp3'
+TEMP_audio_file = 'temp.mp3'
 
 @client.event
 async def on_ready():
@@ -56,20 +54,6 @@ async def on_message(msg):
             raise
     print(f'{Fore.GREEN}message recieved: ' + msg.content + '\n')'''
 
-@client.command(name='kick')
-@commands.has_permissions(kick_members=True)
-async def kick(context, member: discord.Member, *, reason=None):
-    await member.kick(reason=reason)
-    await context.send('User ' + member.display_name + ' has been KICKED.')
-    print(f'{Fore.RED}KICKED user: ' + member.display_name + '\n')
-
-@client.command(name='ban')
-@commands.has_permissions(ban_members=True)
-async def ban(context, member: discord.Member, *, reason=None):
-    await member.ban(reason=reason)
-    await context.send('User ' + member.display_name + ' has been BANNED.')
-    print(f'{Fore.RED}BANNED user: ' + member.display_name + '\n')
-
 @client.command(name='join')
 async def join(context):
     voice_channel = context.author.voice.channel
@@ -78,7 +62,7 @@ async def join(context):
 
 @client.command(name='play')
 async def play(context, url: str):
-    audio_file = './test.mp3'
+    audio_file = './temp.mp3'
     file_exists = os.path.isfile(audio_file)
     try:
         if file_exists:
@@ -125,11 +109,6 @@ async def play(context, url: str):
 async def leave(context):
     await context.voice_client.disconnect()
     print(f'{Fore.GREEN}Bot left voice channel\n')
-
-'''@client.command(name='dc')
-async def dc(context):
-    await on_disconnect()
-    await context.send('Bot ' + client.user.name + ' disconnected from server.')'''
 
 @client.command(name='ping')
 async def ping(context):
